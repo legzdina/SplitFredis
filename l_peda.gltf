@@ -1,0 +1,173 @@
+{
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5123,
+            "count" : 9090,
+            "max" : [
+                1668
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 1669,
+            "max" : [
+                0.5671392679214478,
+                1.0,
+                0.7912724614143372
+            ],
+            "min" : [
+                -0.5464287996292114,
+                -0.3140716552734375,
+                -0.7401573657989502
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 1669,
+            "max" : [
+                0.999847412109375,
+                1.0,
+                0.9991455078125
+            ],
+            "min" : [
+                -0.9982604384422302,
+                -1.0,
+                -0.9998779296875
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5126,
+            "count" : 1669,
+            "max" : [
+                0.7482805848121643,
+                1.0
+            ],
+            "min" : [
+                0.0,
+                0.6653876602649689
+            ],
+            "type" : "VEC2"
+        }
+    ],
+    "asset" : {
+        "generator" : "Khronos Blender glTF 2.0 exporter",
+        "version" : "2.0"
+    },
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 18180,
+            "byteOffset" : 0,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 20028,
+            "byteOffset" : 18180,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 20028,
+            "byteOffset" : 38208,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 13352,
+            "byteOffset" : 58236,
+            "target" : 34962
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 71588,
+            "uri" : "l_peda.bin"
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Cube.010",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 2,
+                        "POSITION" : 1,
+                        "TEXCOORD_0" : 3
+                    },
+                    "indices" : 0
+                }
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "name" : "Camera",
+            "rotation" : [
+                0.483536034822464,
+                0.33687159419059753,
+                -0.20870360732078552,
+                0.7804827094078064
+            ],
+            "translation" : [
+                7.481131553649902,
+                5.34366512298584,
+                6.5076398849487305
+            ]
+        },
+        {
+            "mesh" : 0,
+            "name" : "Cube.007",
+            "scale" : [
+                0.897599995136261,
+                1.0,
+                1.6686639785766602
+            ],
+            "translation" : [
+                -1.0189380645751953,
+                -16.01421546936035,
+                0.5666470527648926
+            ]
+        },
+        {
+            "name" : "Lamp",
+            "rotation" : [
+                0.16907575726509094,
+                0.7558802962303162,
+                -0.27217137813568115,
+                0.570947527885437
+            ],
+            "scale" : [
+                1.0,
+                1.0,
+                0.9999999403953552
+            ],
+            "translation" : [
+                4.076245307922363,
+                5.903861999511719,
+                -1.0054539442062378
+            ]
+        }
+    ],
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                1,
+                2,
+                0
+            ]
+        }
+    ]
+}

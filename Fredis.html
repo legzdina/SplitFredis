@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Fredis</title>
+	    <style>
+    	body{
+    		margin: 0;
+    		overflow: hidden;
+    	}
+
+
+#menu {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+}
+    </style>
+</head>
+<body>
+
+    <div id="container"></div>
+    <div id="menu">
+                <button id="split">Sadali Fredi</button>
+				<button id="explode">Uzspridzini</button>
+            </div>
+   <div id="div"></div>
+   <canvas id="myCanvas"></canvas>
+ <script src="Stats.js"></script> 
+  <script src="three.js"></script>
+  <script src="js/three2.min.js"></script>
+  <script src="js/Stats2.js"></script>
+  <script src="GLTFLoader.js"></script>
+	<script src="OrbitControls.js"></script>
+	
+  <script>  
+      var renderer,
+    	scene,
+    	camera,
+		stats,
+    	myCanvas = document.getElementById('myCanvas');
+		
+  	init();
+	
+
+
+	function init() {
+	renderer = new THREE.WebGLRenderer({
+      canvas: myCanvas, 
+      antialias: true
+    });
+    renderer.setClearColor(0x000000); 
+	renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize( window.innerWidth, window.innerHeight);
+
+	clock = new THREE.Clock();
+	geometry = new THREE.CubeGeometry( 200, 200, 200 );
+    material = new THREE.MeshLambertMaterial( { color: 0xaa6666, wireframe: false } );
+    mesh = new THREE.Mesh( geometry, material );
+    //scene.add( mesh );
+    cubeSineDriver = 0;
+	smokeParticles = [];
+
+    camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 100000 );
+    camera.position.z = 1600;
+    camera.position.y = 200;
+    camera.rotation.x =  -0.08;
+
+	scene = new THREE.Scene();	
+    scene.add( camera );  
+
+    control = new THREE.OrbitControls( camera );
+    control.addEventListener( 'change', render );
+
+	stats = new Stats();
+	stats.domElement.style.position = 'absolute';
+	stats.domElement.style.top = '0px';
+	stats.domElement.style.zIndex = 100;
+	div.appendChild( stats.domElement );
+
+	world_geom = new THREE.PlaneGeometry( 4000, 4000, 32, 32);
+    mat_world = new THREE.MeshBasicMaterial({ color: 0xFFFF99, wireframe: true});
+    world = new THREE.Mesh(world_geom, mat_world);
+    world.position.y = - 340;
+    world.rotation.x = 1.7
+    scene.add( world);	
+
+	ambientLight = new THREE.AmbientLight(0xaaaaaa);
+	scene.add(ambientLight);	
+	pointLight1 = new THREE.PointLight(0xffffff);
+	pointLight1.position.set(400,600,300);
+	scene.add(pointLight1);
+	pointLight2 = new THREE.PointLight(0xffffff, 0.5);
+	pointLight2.position.set(-300,400,-300);
+	scene.add(pointLight2);	
+
+	var loader = new THREE.GLTFLoader();
+    loader.load('fredis.gltf', function(gltf){
+	loader.load('galva.gltf', function(gltf1){
+    loader.load('krutis.gltf', function(gltf2){
+	loader.load('l_augsDelms.gltf', function(gltf3){
+	loader.load('l_apaksDelms.gltf', function(gltf4){
+	loader.load('l_plauksta.gltf', function(gltf5){
+	loader.load('k_augsDelms.gltf', function(gltf6){
+	loader.load('k_apaksDelms.gltf', function(gltf7){
+	loader.load('k_plauksta.gltf', function(gltf8){
+	loader.load('ribas.gltf', function(gltf9){
+	loader.load('guzas.gltf', function(gltf10){
+	loader.load('l_ciska.gltf', function(gltf11){
+	loader.load('l_celis.gltf', function(gltf12){
+	loader.load('l_apaksStilbs.gltf', function(gltf13){
+	loader.load('l_peda.gltf', function(gltf14){
+	loader.load('k_ciska.gltf', function(gltf15){
+	loader.load('k_celis.gltf', function(gltf16){
+	loader.load('k_apaksStilbs.gltf', function(gltf17){
+	loader.load('k_peda.gltf', function(gltf18){
+
+	//Fredis
+	gltf.scene.scale.set( 55, 55, 55 );			   
+	gltf.scene.position.x = 20.55;		
+    gltf.scene.position.y = 488;			
+	gltf.scene.position.z = -66.55;				
+
+	scene.add( gltf.scene);
+	scene.remove( gltf1.scene,gltf2.scene,gltf3.scene,gltf4.scene,
+	gltf5.scene,gltf6.scene,gltf7.scene,gltf8.scene,gltf9.scene,
+	gltf10.scene,gltf11.scene,gltf12.scene,gltf13.scene,gltf14.scene,
+	gltf15.scene,gltf16.scene,gltf17.scene,gltf18.scene);
+	document.getElementById("split").onclick = function () {
+	scene.remove( gltf.scene );
+
+	//GALVA   		
+	gltf1.scene.scale.set( 55, 55, 55 );			   
+	gltf1.scene.position.x =19;				
+    gltf1.scene.position.y = 420;			
+	gltf1.scene.position.z = 0;
+	//KRUTIS
+	gltf2.scene.scale.set( 55, 55, 55 );			   
+	gltf2.scene.position.x =-70;				
+    gltf2.scene.position.y = 435;			
+	gltf2.scene.position.z = 0;	
+	//LABAIS PLECS
+	gltf3.scene.scale.set( 55, 55, 55 );			   
+	gltf3.scene.position.x =43;			
+    gltf3.scene.position.y = 460;			
+	gltf3.scene.position.z = 0;	
+	//LABAIS APAKSDELMS
+	gltf4.scene.scale.set( 55, 55, 55 );			   
+	gltf4.scene.position.x =62;			
+    gltf4.scene.position.y = 460;			
+	gltf4.scene.position.z = 0;
+	//LABA PLAUKSTA
+	gltf5.scene.scale.set( 55, 55, 55 );			   
+	gltf5.scene.position.x =90;			
+    gltf5.scene.position.y = 460;			
+	gltf5.scene.position.z = 0;
+	//KREISAIS PLECS
+	gltf6.scene.scale.set( 55, 55, 55 );			   
+	gltf6.scene.position.x =0;			
+    gltf6.scene.position.y = 460;		
+	gltf6.scene.position.z = 0;
+	//KREISASI APAKSDELMS
+	gltf7.scene.scale.set( 55, 55, 55 );			   
+	gltf7.scene.position.x =-45;	
+    gltf7.scene.position.y = 460;		
+	gltf7.scene.position.z = 0;	
+	//KREISA PLAUKSTA
+	gltf8.scene.scale.set( 55, 55, 55 );			   
+	gltf8.scene.position.x =-80;				  
+    gltf8.scene.position.y = 460;				
+	gltf8.scene.position.z = 0;	
+	//RIBAS
+	gltf9.scene.scale.set( 55, 55, 55 );			   
+	gltf9.scene.position.x =21;				 
+    gltf9.scene.position.y = 447;				 
+	gltf9.scene.position.z = 0;
+	//GUZAS
+	gltf10.scene.scale.set( 55, 55, 55 );			   
+	gltf10.scene.position.x =21;				    
+    gltf10.scene.position.y = 462;				   
+	gltf10.scene.position.z = 0;	
+	//LABA CISKA
+	gltf11.scene.scale.set( 55, 55, 55 );
+	gltf11.scene.position.x =21;				  
+    gltf11.scene.position.y = 477;		
+	gltf11.scene.position.z = 0;
+	//LABAIS CELIS
+	gltf12.scene.scale.set( 55, 55, 55 );			   
+	gltf12.scene.position.x =21;
+    gltf12.scene.position.y = 488;
+	gltf12.scene.position.z = 0;	
+	//LABA KAJAS APAKSA
+	gltf13.scene.scale.set( 55, 55, 55 );			   
+	gltf13.scene.position.x =21;	
+    gltf13.scene.position.y = 513;		
+	gltf13.scene.position.z = 0;	
+	//LAPA PEDA
+	gltf14.scene.scale.set( 55, 55, 55 );			   
+	gltf14.scene.position.x =21;			
+    gltf14.scene.position.y = 540;				   
+	gltf14.scene.position.z = 0;	
+	//KREISA CISKA
+	gltf15.scene.scale.set( 55, 55, 55 );			   
+	gltf15.scene.position.x =21;				
+    gltf15.scene.position.y = 479;			
+	gltf15.scene.position.z = 0;	
+	//KREISAIS CELIS
+	gltf16.scene.scale.set( 55, 55, 55 );			   
+	gltf16.scene.position.x =21;				  
+    gltf16.scene.position.y = 489;				 
+	gltf16.scene.position.z = 0;	
+	//KREISA KAJAS APAKASA
+	gltf17.scene.scale.set( 55, 55, 55 );			   
+	gltf17.scene.position.x =21;				 
+    gltf17.scene.position.y = 510;				 
+	gltf17.scene.position.z = 0;	
+	//KREISA PEDA
+	gltf18.scene.scale.set( 55, 55, 55 );			   
+	gltf18.scene.position.x =21;				 
+    gltf18.scene.position.y = 540;				   
+	gltf18.scene.position.z = 0;
+
+	scene.add( gltf1.scene,gltf2.scene,gltf3.scene,gltf4.scene,
+	gltf5.scene,gltf6.scene,gltf7.scene,gltf8.scene,gltf9.scene,
+	gltf10.scene,gltf11.scene,gltf12.scene,gltf13.scene,gltf14.scene,
+	gltf15.scene,gltf16.scene,gltf17.scene,gltf18.scene);
+	};
+	 	document.getElementById("explode").onclick = function () {
+		/*
+		masGltf = ["gltf1", "gltf2", "gltf3", "gltf4","gltf5", "gltf6", 
+		"gltf7", "gltf8","gltf9", "gltf10", "gltf11", "gltf12","gltf13", 
+		"gltf14", "gltf15", "gltf16","gltf17", "gltf18"];
+
+		for (i = 0; i < masGltf.length; i++) {
+		var gltfValue = masGltf[i];
+			 masGltf[i].scene.position.x=Math.floor(Math.random() * 100) + 1; 
+			 masGltf[i].scene.position.y=Math.floor(Math.random() * 100) + 1; 
+		}  // Unable to 'get property 'position' of undefined or null reference' 
+		*/
+		gltf1.scene.position.x=Math.floor(Math.random() * 1000) - 1000;
+		gltf1.scene.position.y=Math.floor(Math.random() * 2000) + 480;
+		gltf1.scene.position.z=Math.floor(Math.random() * 2000) - 2000;
+		gltf2.scene.position.x=Math.floor(Math.random() * 2000) - 2000;
+		gltf2.scene.position.y=Math.floor(Math.random() * 2000) + 480;
+		gltf2.scene.position.z=Math.floor(Math.random() * 2000) - 2000;
+		gltf3.scene.position.x=Math.floor(Math.random() * 1000) - 1000;
+		gltf3.scene.position.y=Math.floor(Math.random() * 2000) + 480;
+		gltf3.scene.position.z=Math.floor(Math.random() * 2000) - 2000;
+		gltf4.scene.position.x=Math.floor(Math.random() * 1000) - 1000;
+		gltf4.scene.position.y=Math.floor(Math.random() * 2000) + 480;
+		gltf4.scene.position.z=Math.floor(Math.random() * 2000) - 2000;
+		gltf5.scene.position.x=Math.floor(Math.random() * 2000) - 2000;
+		gltf5.scene.position.y=Math.floor(Math.random() * 2000) + 480;
+		gltf5.scene.position.z=Math.floor(Math.random() * 1000) - 2000;
+		gltf6.scene.position.x=Math.floor(Math.random() * 2000) - 2000;
+		gltf6.scene.position.y=Math.floor(Math.random() * 2000) + 480;
+		gltf6.scene.position.z=Math.floor(Math.random() * 2000) - 2000;
+		gltf7.scene.position.x=Math.floor(Math.random() * 2000) - 2000;
+		gltf7.scene.position.y=Math.floor(Math.random() * 2000) + 480;
+		gltf7.scene.position.z=Math.floor(Math.random() * 1000) - 2000;
+		gltf8.scene.position.x=Math.floor(Math.random() * 2000) - 2000;
+		gltf8.scene.position.y=Math.floor(Math.random() * 2000) + 480;
+		gltf8.scene.position.x=Math.floor(Math.random() * 2000) - 2000;
+		gltf9.scene.position.y=Math.floor(Math.random() * 1000) + 480;
+		gltf9.scene.position.z=Math.floor(Math.random() * 2000) - 2000;
+		gltf9.scene.position.z=Math.floor(Math.random() * 2000) - 2000;
+		gltf10.scene.position.x=Math.floor(Math.random() * 2000) - 2000;
+		gltf10.scene.position.y=Math.floor(Math.random() * 2000) + 480;
+		gltf10.scene.position.x=Math.floor(Math.random() * 1000) - 1000;
+		gltf11.scene.position.y=Math.floor(Math.random() * 2000) + 480;
+		gltf11.scene.position.z=Math.floor(Math.random() * 2000) - 2000;
+		gltf11.scene.position.z=Math.floor(Math.random() * 2000) - 2000;
+		gltf12.scene.position.x=Math.floor(Math.random() * 2000) - 2000;
+		gltf12.scene.position.y=Math.floor(Math.random() * 1000) + 480;
+		gltf12.scene.position.z=Math.floor(Math.random() * 2000) - 2000;
+		gltf13.scene.position.x=Math.floor(Math.random() * 2000) - 2000;
+		gltf13.scene.position.y=Math.floor(Math.random() * 1000) + 480;
+		gltf13.scene.position.z=Math.floor(Math.random() * 2000) - 2000;
+		gltf14.scene.position.x=Math.floor(Math.random() * 2000) - 2000;
+		gltf14.scene.position.y=Math.floor(Math.random() * 2000) + 480;
+		gltf14.scene.position.z=Math.floor(Math.random() * 1000) - 2000;
+		gltf15.scene.position.x=Math.floor(Math.random() * 2000) - 2000;
+		gltf15.scene.position.y=Math.floor(Math.random() * 2000) + 480;
+		gltf15.scene.position.z=Math.floor(Math.random() * 2000) - 2000;
+		gltf16.scene.position.x=Math.floor(Math.random() * 2000) - 2000;
+		gltf16.scene.position.y=Math.floor(Math.random() * 2000) + 480;
+		gltf16.scene.position.z=Math.floor(Math.random() * 1000) - 2000;
+		gltf17.scene.position.x=Math.floor(Math.random() * 2000) - 2000;
+		gltf17.scene.position.y=Math.floor(Math.random() * 1000) + 480;
+		gltf17.scene.position.z=Math.floor(Math.random() * 2000) - 2000;
+		gltf18.scene.position.x=Math.floor(Math.random() * 2000) - 2000;
+		gltf18.scene.position.y=Math.floor(Math.random() * 1000) + 480;
+		gltf18.scene.position.x=Math.floor(Math.random() * 2000) - 2000;
+		
+	scene.add( gltf1.scene,gltf2.scene,gltf3.scene,gltf4.scene,
+	gltf5.scene,gltf6.scene,gltf7.scene,gltf8.scene,gltf9.scene,
+	gltf10.scene,gltf11.scene,gltf12.scene,gltf13.scene,gltf14.scene,
+	gltf15.scene,gltf16.scene,gltf17.scene,gltf18.scene);
+
+	
+
+	light = new THREE.DirectionalLight(0xffffff,0.5);
+    light.position.set(-1,0,1);
+    scene.add(light);
+
+	smokeTexture = THREE.ImageUtils.loadTexture('smoke.png');
+    smokeMaterial = new THREE.MeshLambertMaterial({color: 0xFF0000, map: smokeTexture, transparent: true});
+    smokeGeo = new THREE.PlaneGeometry(400,400);
+    
+
+
+    for (p = 0; p < 150; p++) {
+        var particle = new THREE.Mesh(smokeGeo,smokeMaterial);
+        particle.position.set(Math.random()*1000-950,Math.random()*400-350,Math.random()*300-100);
+        particle.rotation.z = Math.random() * 360;
+        scene.add(particle);
+        smokeParticles.push(particle);
+    }
+	
+	}
+    });});});});});});});});});});});});});});});});});});});
+	
+    
+	
+	
+}
+
+function animate() {
+ 
+ // note: three.js includes requestAnimationFrame shim
+ stats.begin();
+ delta = clock.getDelta();
+ requestAnimationFrame( animate );
+ evolveSmoke();
+ render();
+ stats.end();
+}
+
+function evolveSmoke() {
+ var sp = smokeParticles.length;
+ while(sp--) {
+	 smokeParticles[sp].rotation.z += (delta * 0.2);
+ }
+}
+
+
+stats.update();
+render();
+function render() {
+
+	
+
+  renderer.render( scene, camera );    
+  requestAnimationFrame(render);
+
+ 
+    
+}	
+
+
+  </script>  
+</body>
+</html>

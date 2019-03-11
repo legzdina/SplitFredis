@@ -1,0 +1,168 @@
+{
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5123,
+            "count" : 74400,
+            "max" : [
+                13078
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 13079,
+            "max" : [
+                1.0,
+                0.27791523933410645,
+                0.5662972331047058
+            ],
+            "min" : [
+                -0.7837858200073242,
+                -0.4586758613586426,
+                -0.7049807906150818
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 13079,
+            "max" : [
+                1.0,
+                0.999908447265625,
+                0.99993896484375
+            ],
+            "min" : [
+                -0.99981689453125,
+                -0.999969482421875,
+                -0.999908447265625
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5126,
+            "count" : 13079,
+            "max" : [
+                0.5878341197967529,
+                1.0
+            ],
+            "min" : [
+                0.0,
+                0.04368627071380615
+            ],
+            "type" : "VEC2"
+        }
+    ],
+    "asset" : {
+        "generator" : "Khronos Blender glTF 2.0 exporter",
+        "version" : "2.0"
+    },
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 148800,
+            "byteOffset" : 0,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 156948,
+            "byteOffset" : 148800,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 156948,
+            "byteOffset" : 305748,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 104632,
+            "byteOffset" : 462696,
+            "target" : 34962
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 567328,
+            "uri" : "l_plauksta.bin"
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Cube.017",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 2,
+                        "POSITION" : 1,
+                        "TEXCOORD_0" : 3
+                    },
+                    "indices" : 0
+                }
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "name" : "Camera",
+            "rotation" : [
+                0.483536034822464,
+                0.33687159419059753,
+                -0.20870360732078552,
+                0.7804827094078064
+            ],
+            "translation" : [
+                7.481131553649902,
+                5.34366512298584,
+                6.5076398849487305
+            ]
+        },
+        {
+            "mesh" : 0,
+            "name" : "Cube.014",
+            "translation" : [
+                -8.309229850769043,
+                -2.269075632095337,
+                -0.13384532928466797
+            ]
+        },
+        {
+            "name" : "Lamp",
+            "rotation" : [
+                0.16907575726509094,
+                0.7558802962303162,
+                -0.27217137813568115,
+                0.570947527885437
+            ],
+            "scale" : [
+                1.0,
+                1.0,
+                0.9999999403953552
+            ],
+            "translation" : [
+                4.076245307922363,
+                5.903861999511719,
+                -1.0054539442062378
+            ]
+        }
+    ],
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                1,
+                2,
+                0
+            ]
+        }
+    ]
+}
