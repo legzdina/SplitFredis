@@ -29,8 +29,9 @@
    <canvas id="myCanvas"></canvas>
  <script src="Stats.js"></script> 
   <script src="three.js"></script>
-  <script src="js/three2.min.js"></script>
-  <script src="js/Stats2.js"></script>
+  <script src="/js/Stats2.js"></script> 
+  <script src="/js/three2.min.js"></script>
+  
   <script src="GLTFLoader.js"></script>
 	<script src="OrbitControls.js"></script>
 	
@@ -39,11 +40,12 @@
     	scene,
     	camera,
 		stats,
+		smokeParticles = [],
     	myCanvas = document.getElementById('myCanvas');
 		
   	init();
+	animate();
 	
-
 
 	function init() {
 	renderer = new THREE.WebGLRenderer({
@@ -54,14 +56,6 @@
 	renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize( window.innerWidth, window.innerHeight);
 
-	clock = new THREE.Clock();
-	geometry = new THREE.CubeGeometry( 200, 200, 200 );
-    material = new THREE.MeshLambertMaterial( { color: 0xaa6666, wireframe: false } );
-    mesh = new THREE.Mesh( geometry, material );
-    //scene.add( mesh );
-    cubeSineDriver = 0;
-	smokeParticles = [];
-
     camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 100000 );
     camera.position.z = 1600;
     camera.position.y = 200;
@@ -69,6 +63,13 @@
 
 	scene = new THREE.Scene();	
     scene.add( camera );  
+
+	clock = new THREE.Clock();
+	geometry = new THREE.CubeGeometry( 200, 200, 200 );
+    material = new THREE.MeshLambertMaterial( { color: 0xaa6666, wireframe: false } );
+    mesh = new THREE.Mesh( geometry, material );
+    //scene.add( mesh );
+    cubeSineDriver = 0;
 
     control = new THREE.OrbitControls( camera );
     control.addEventListener( 'change', render );
@@ -298,8 +299,6 @@
 	gltf10.scene,gltf11.scene,gltf12.scene,gltf13.scene,gltf14.scene,
 	gltf15.scene,gltf16.scene,gltf17.scene,gltf18.scene);
 
-	
-
 	light = new THREE.DirectionalLight(0xffffff,0.5);
     light.position.set(-1,0,1);
     scene.add(light);
@@ -326,39 +325,31 @@
 	
 }
 
+
 function animate() {
  
  // note: three.js includes requestAnimationFrame shim
- stats.begin();
+//  stats.begin();
  delta = clock.getDelta();
  requestAnimationFrame( animate );
- evolveSmoke();
+ var sp = this.smokeParticles.length;
+    while(sp--) {
+        this.smokeParticles[sp].rotation.z += (delta * 0.2);
  render();
- stats.end();
+// stats.end();
 }
-
-function evolveSmoke() {
- var sp = smokeParticles.length;
- while(sp--) {
-	 smokeParticles[sp].rotation.z += (delta * 0.2);
- }
 }
-
-
 stats.update();
 render();
 function render() {
 
-	
-
+	mesh.rotation.x += 0.005;
+    mesh.rotation.y += 0.01;
+    cubeSineDriver += .01;
+    mesh.position.z = 100 + (Math.sin(cubeSineDriver) * 500);
   renderer.render( scene, camera );    
   requestAnimationFrame(render);
-
- 
-    
 }	
-
-
   </script>  
 </body>
 </html>
